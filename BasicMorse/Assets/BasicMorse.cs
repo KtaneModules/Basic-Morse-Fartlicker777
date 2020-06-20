@@ -179,4 +179,55 @@ public class BasicMorse : MonoBehaviour {
       return newnum;
     }
     }
+    //I add the Twich Play
+    #pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"Use !{0} up/down to press the corresponding arrow, !{0} submit XXXX to submit a word.";
+    #pragma warning restore 414
+    IEnumerator ProcessTwitchCommand(string command){
+      int WeedCheck = 0;
+      command = command.Trim();
+      string[] parameters = command.Split(' ');
+      if (parameters.Length > 2) {
+        yield return "sendtochaterror Too many words!";
+      }
+      else if (parameters.Length < 1) {
+        yield return "sendtochaterror Too little words!";
+      }
+      else if (parameters[0].ToUpper() == "UP") {
+        yield return null;
+        ArrowsAndSubmit[0].OnInteract();
+        yield break;
+      }
+      else if (parameters[0].ToUpper() == "DOWN") {
+        yield return null;
+        ArrowsAndSubmit[1].OnInteract();
+        yield break;
+      }
+      else if (parameters[0].ToUpper() == "SUBMIT") {
+        yield return null;
+        for (int i = 0; i < parameters[1].Length; i++) {
+          for (int j = 0; j < 26; j++) {
+            if (parameters[1][i].ToString().ToUpper() == STDphabet[j].ToString().ToUpper()) {
+              WeedCheck += 1;
+            }
+          }
+        }
+        if (parameters[1].Length == WeedCheck) {
+          for (int i = 0; i < parameters[1].Length; i++) {
+            for (int j = 0; j < 26; j++) {
+              if (parameters[1][i].ToString().ToUpper() == STDphabet[j].ToString().ToUpper()) {
+                Letters[j].OnInteract();
+                yield return new WaitForSeconds(.1f);
+              }
+            }
+          }
+          ArrowsAndSubmit[2].OnInteract();
+          WeedCheck = 0;
+          ArrowsAndSubmit[0].OnInteract();
+          ArrowsAndSubmit[1].OnInteract();
+          yield break;
+        }
+        WeedCheck = 0;
+      }
+    }
 }
