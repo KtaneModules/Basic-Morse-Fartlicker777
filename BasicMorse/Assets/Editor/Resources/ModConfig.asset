@@ -14,7 +14,10 @@ MonoBehaviour:
   id: BasicMorse
   title: Basic Morse
   author: Me
-  description: Basically, you're screwed.
+  description: "Basically, you're screwed.\r\n\r\nConvert each display from a different
+    base into ternary, and convert the result into morse code to submit a word.\n\nManual
+    can be found at ktane.timwi.de\r\n\nIf there are any bugs, contact Fartlicker777#9169
+    on Discord."
   version: 
   outputFolder: build
-  previewImage: {fileID: 2800000, guid: 33e7a6a6b056f58418b18ad6787a5e17, type: 3}
+  previewImage: {fileID: 2800000, guid: 6a0c38c5bcf76ef43b6128df6d22fff5, type: 3}
