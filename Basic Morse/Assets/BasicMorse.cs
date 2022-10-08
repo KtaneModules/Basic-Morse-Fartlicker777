@@ -10,14 +10,14 @@ public class BasicMorse : MonoBehaviour {
    public KMAudio Audio;
    public KMSelectable[] Letters;
    public KMSelectable[] ArrowsAndSubmit;
-   public TextMesh AidsNumbers;
+   public TextMesh Display;
 
-   string[] WordsOfAids = { "ACID", "BUST", "CODE", "DAZE", "ECHO", "FILM", "GOLF", "HUNT", "ITCH", "JURY", "KING", "LIME", "MONK", "NUMB", "ONLY", "PREY", "QUIT", "RAVE", "SIZE", "TOWN", "URGE", "VERY", "WAXY", "XYLO", "YARD", "ZERO", "ABORT", "BLEND", "CRYPT", "DWARF", "EQUIP", "FANCY", "GIZMO", "HELIX", "IMPLY", "JOWLS", "KNIFE", "LEMON", "MAJOR", "NIGHT", "OVERT", "POWER", "QUILT", "RUSTY", "STOMP", "TRASH", "UNTIL", "VIRUS", "WHISK", "XERIC", "YACHT", "ZEBRA", "ADVICE", "BUTLER", "CAVITY", "DIGEST", "ELBOWS", "FIXURE", "GOBLET", "HANDLE", "INDUCT", "JOKING", "KNEADS", "LENGTH", "MOVIES", "NIMBLE", "OBTAIN", "PERSON", "QUIVER", "RACHET", "SAILOR", "TRANCE", "UPHELD", "VANISH", "WALNUT", "XYLOSE", "YANKED", "ZODIAC", "ALREADY", "BROWSED", "CAPITOL", "DESTROY", "ERASING", "FLASHED", "GRIMACE", "HIDEOUT", "INFUSED", "JOYRIDE", "KETCHUP", "LOCKING", "MAILBOX", "NUMBERS", "OBSCURE", "PHANTOM", "QUIETLY", "REFUSAL", "SUBJECT", "TRAGEDY", "UNKEMPT", "VENISON", "WARSHIP", "XANTHIC", "YOUNGER", "ZEPHYRS", "ADVOCATE", "BACKFLIP", "CHIMNEYS", "DISTANCE", "EXPLOITS", "FOCALIZE", "GIFTWRAP", "HOVERING", "INVENTOR", "JEALOUSY", "KINSFOLK", "LOCKABLE", "MERCIFUL", "NOTECARD", "OVERCAST", "PERILOUS", "QUESTION", "RAINCOAT", "STEALING", "TREASURY", "UPDATING", "VERTICAL", "WISHBONE", "XENOLITH", "YEARLONG", "ZEALOTRY", "ABHORRENT", "BACCARATS", "CULTIVATE", "DAMNINGLY", "EFFLUXION", "FUTURISTS", "GYROSCOPE", "HAZARDOUS", "ILLOGICAL", "JUXTAPOSE", "KILOBYTES", "LANTHANUM", "MATERIALS", "NIHILISTS", "OBSCENITY", "PAINFULLY", "QUEERNESS", "RESTROOMS", "SABOTAGED", "TYRANNOUS", "UMPTEENTH", "VEXILLATE", "WAYLAYERS", "XENOBLAST", "YTTERBIUM", "ZIGZAGGER" };
+   string[] Wordlist = { "ACID", "BUST", "CODE", "DAZE", "ECHO", "FILM", "GOLF", "HUNT", "ITCH", "JURY", "KING", "LIME", "MONK", "NUMB", "ONLY", "PREY", "QUIT", "RAVE", "SIZE", "TOWN", "URGE", "VERY", "WAXY", "XYLO", "YARD", "ZERO", "ABORT", "BLEND", "CRYPT", "DWARF", "EQUIP", "FANCY", "GIZMO", "HELIX", "IMPLY", "JOWLS", "KNIFE", "LEMON", "MAJOR", "NIGHT", "OVERT", "POWER", "QUILT", "RUSTY", "STOMP", "TRASH", "UNTIL", "VIRUS", "WHISK", "XERIC", "YACHT", "ZEBRA", "ADVICE", "BUTLER", "CAVITY", "DIGEST", "ELBOWS", "FIXURE", "GOBLET", "HANDLE", "INDUCT", "JOKING", "KNEADS", "LENGTH", "MOVIES", "NIMBLE", "OBTAIN", "PERSON", "QUIVER", "RACHET", "SAILOR", "TRANCE", "UPHELD", "VANISH", "WALNUT", "XYLOSE", "YANKED", "ZODIAC", "ALREADY", "BROWSED", "CAPITOL", "DESTROY", "ERASING", "FLASHED", "GRIMACE", "HIDEOUT", "INFUSED", "JOYRIDE", "KETCHUP", "LOCKING", "MAILBOX", "NUMBERS", "OBSCURE", "PHANTOM", "QUIETLY", "REFUSAL", "SUBJECT", "TRAGEDY", "UNKEMPT", "VENISON", "WARSHIP", "XANTHIC", "YOUNGER", "ZEPHYRS", "ADVOCATE", "BACKFLIP", "CHIMNEYS", "DISTANCE", "EXPLOITS", "FOCALIZE", "GIFTWRAP", "HOVERING", "INVENTOR", "JEALOUSY", "KINSFOLK", "LOCKABLE", "MERCIFUL", "NOTECARD", "OVERCAST", "PERILOUS", "QUESTION", "RAINCOAT", "STEALING", "TREASURY", "UPDATING", "VERTICAL", "WISHBONE", "XENOLITH", "YEARLONG", "ZEALOTRY", "ABHORRENT", "BACCARATS", "CULTIVATE", "DAMNINGLY", "EFFLUXION", "FUTURISTS", "GYROSCOPE", "HAZARDOUS", "ILLOGICAL", "JUXTAPOSE", "KILOBYTES", "LANTHANUM", "MATERIALS", "NIHILISTS", "OBSCENITY", "PAINFULLY", "QUEERNESS", "RESTROOMS", "SABOTAGED", "TYRANNOUS", "UMPTEENTH", "VEXILLATE", "WAYLAYERS", "XENOBLAST", "YTTERBIUM", "ZIGZAGGER" };
    string QWERTYPhabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
    string StandardAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    readonly int[] WordsButBaseTen = { 7, 27, 30, 9, 2, 57, 12, 54, 6, 67, 10, 63, 4, 3, 13, 66, 37, 21, 18, 1, 19, 55, 22, 28, 31, 36 };
    int WordPicker = 0;
-   string SaintKildaFan = "";
+   string ChosenWord = "";
    int BaseIndex = 2;
    private List<int> Starting = new List<int> { };
    private List<int> Offset = new List<int> { };
@@ -39,24 +39,24 @@ public class BasicMorse : MonoBehaviour {
    }
 
    void Start() {
-      WordPicker = UnityEngine.Random.Range(0, WordsOfAids.Length);
-      SaintKildaFan = WordsOfAids[WordPicker];
-      for (int i = 0; i < SaintKildaFan.Length; i++) {
+      WordPicker = UnityEngine.Random.Range(0, Wordlist.Length);
+      ChosenWord = Wordlist[WordPicker];
+      for (int i = 0; i < ChosenWord.Length; i++) {
          for (int j = 0; j < 26; j++) {
-            if (SaintKildaFan[i] == StandardAlphabet[j]) {
+            if (ChosenWord[i] == StandardAlphabet[j]) {
                Starting.Add(WordsButBaseTen[j]);
                Offset.Add(UnityEngine.Random.Range(0, WordsButBaseTen[j]));
                Result.Add(Starting.Last() - Offset.Last());
             }
          }
       }
-      Debug.LogFormat("[Basic Morse #{0}] The word chosen is {1}.", moduleId, SaintKildaFan);
-      AidsNumbers.text = Larger();
+      Debug.LogFormat("[Basic Morse #{0}] The word chosen is {1}.", moduleId, ChosenWord);
+      Display.text = Larger();
       StartCoroutine(Logger());
    }
 
    IEnumerator Logger () { //It's 2:30 am and I can't think of a better way to do this.
-      for (int i = 0; i < SaintKildaFan.Length; i++) {
+      for (int i = 0; i < ChosenWord.Length; i++) {
          Debug.LogFormat("[Basic Morse #{0}] The page says {1} + {2} in base {3}. This shows up as {4}.", moduleId, Result[i], Offset[i], i + 2, Larger().Replace('\n', ' '));
          ArrowsAndSubmit[0].OnInteract();
          yield return new WaitForSecondsRealtime(.01f);
@@ -72,17 +72,17 @@ public class BasicMorse : MonoBehaviour {
       for (int i = 0; i < 26; i++) {
          if (Letter == Letters[i]) {
             CasualBattlesOfTheCongo += QWERTYPhabet[i];
-            AidsNumbers.text = CasualBattlesOfTheCongo;
+            Display.text = CasualBattlesOfTheCongo;
          }
          switch (CasualBattlesOfTheCongo.Length) {
             case 8:
-               AidsNumbers.fontSize = 265;
+               Display.fontSize = 265;
                break;
             case 9:
-               AidsNumbers.fontSize = 230;
+               Display.fontSize = 230;
                break;
             default:
-               AidsNumbers.fontSize = 300;
+               Display.fontSize = 300;
                break;
          }
       }
@@ -96,22 +96,22 @@ public class BasicMorse : MonoBehaviour {
       }
       if (Arrow == ArrowsAndSubmit[0]) {
          BaseIndex++;
-         if (BaseIndex - 1 > SaintKildaFan.Length) {
+         if (BaseIndex - 1 > ChosenWord.Length) {
             BaseIndex = 2;
          }
          CasualBattlesOfTheCongo = String.Empty;
-         AidsNumbers.text = Larger();
+         Display.text = Larger();
       }
       else if (Arrow == ArrowsAndSubmit[1]) {
          BaseIndex--;
          if (BaseIndex < 2) {
-            BaseIndex = SaintKildaFan.Length + 1;
+            BaseIndex = ChosenWord.Length + 1;
          }
          CasualBattlesOfTheCongo = String.Empty;
-         AidsNumbers.text = Larger();
+         Display.text = Larger();
       }
       else {
-         if (CasualBattlesOfTheCongo == SaintKildaFan) {
+         if (CasualBattlesOfTheCongo == ChosenWord) {
             GetComponent<KMBombModule>().HandlePass();
             moduleSolved = true;
          }
@@ -151,7 +151,7 @@ public class BasicMorse : MonoBehaviour {
             First = "0" + First;
          } while (Second.Length > First.Length);
       }
-      AidsNumbers.fontSize = 300;
+      Display.fontSize = 300;
       return First + "\n+\n" + Second;
    }
 
@@ -200,6 +200,6 @@ public class BasicMorse : MonoBehaviour {
    }
 
    IEnumerator TwitchHandleForcedSolve () {
-      yield return ProcessTwitchCommand("submit " + SaintKildaFan);
+      yield return ProcessTwitchCommand("submit " + ChosenWord);
    }
 }

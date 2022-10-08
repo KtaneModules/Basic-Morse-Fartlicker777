@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 102042152335198462}
   - component: {fileID: 114769376128300912}
   m_Layer: 0
-  m_Name: Aids
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7659,7 +7659,7 @@ MonoBehaviour:
   - {fileID: 114821856383350734}
   - {fileID: 114456061206061636}
   - {fileID: 114100566173958372}
-  AidsNumbers: {fileID: 102042152335198462}
+  Display: {fileID: 102042152335198462}
 --- !u!114 &114781881486065360
 MonoBehaviour:
   m_ObjectHideFlags: 1
